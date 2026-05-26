@@ -1,10 +1,12 @@
 ﻿using GestionProyectosApi.Domain.Models;
 using GestionProyectosApi.Domain.Models.Dto;
+using GestionProyectosApi.Domain.Entities.CustomEntities;
 using GestionProyectosApi.Domain.Models.Generico.SP;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Text.Json;
 
 namespace GestionProyectosApi.WebAPI.Controllers
 {
@@ -23,8 +25,8 @@ namespace GestionProyectosApi.WebAPI.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(List<ProductoResponseDto>))]
-        public ActionResult<ResultOperation<List<ProductoResponseDto>>> GetAll([FromHeader] string Authorization)
+        [ProducesResponseType(200, Type = typeof(PagedList<ProductoResponseDto>))]
+        public ActionResult<ResultOperation<PagedList<ProductoResponseDto>>> GetAll([FromQuery] ProductoFilterDto filter, [FromHeader] string Authorization)
         {
             try
             {
@@ -32,17 +34,25 @@ namespace GestionProyectosApi.WebAPI.Controllers
                 var token = ValidateToken(tokenString, _configuration["Authentication:SecretKey"]);
                 ValidateRole(token, "Administrador");
 
-                var response = _productoService.GetAll();
+                var response = _productoService.GetAll(filter);
 
                 if (!response.stateOperation)
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError, response);
                 }
 
-                if (!string.IsNullOrEmpty(response.MessageResult))
+                var metadata = new
                 {
-                    return Ok(response.MessageResult);
-                }
+                    response.Result.TotalCount,
+                    response.Result.PageSize,
+                    response.Result.CurrentPage,
+                    response.Result.TotalPages,
+                    response.Result.HasNextPage,
+                    response.Result.HasPreviousPage
+                };
+
+                Response.Headers["Pagination"] = JsonSerializer.Serialize(metadata);
+                Response.Headers["Access-Control-Expose-Headers"] = "Pagination";
 
                 return Ok(response.Result);
             }

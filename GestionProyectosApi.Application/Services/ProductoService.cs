@@ -1,4 +1,5 @@
 ﻿using GestionProyectosApi.Application.Services.Interfaces;
+using GestionProyectosApi.Domain.Entities.CustomEntities;
 using GestionProyectosApi.Domain.Models;
 using GestionProyectosApi.Domain.Models.Dto;
 using GestionProyectosApi.Domain.Models.Generico.SP;
@@ -6,6 +7,7 @@ using GestionProyectosApi.Infrastructure.Repositories;
 using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
 using GestionProyectosApi.Infrastructure.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
+using System.Globalization;
 
 namespace GestionProyectosApi.Application.Services
 {
@@ -38,26 +40,26 @@ namespace GestionProyectosApi.Application.Services
 
         #region READ
 
-        public ResultOperation<List<ProductoResponseDto>> GetAll()
+        public ResultOperation<PagedList<ProductoResponseDto>> GetAll(ProductoFilterDto filter)
         {
-            var result = Execute<ResultOperation<List<ProductoResponseDto>>>((repo, uow) =>
+            var result = Execute<ResultOperation<PagedList<ProductoResponseDto>>>((repo, uow) =>
             {
-                var rst = new ResultOperation<List<ProductoResponseDto>>();
+                var rst = new ResultOperation<PagedList<ProductoResponseDto>>();
 
                 try
                 {
-                    var list = repo.GetAll();
+                    filter ??= new ProductoFilterDto();
+                    var pageNumber = filter.PageNumber > 0 ? filter.PageNumber : 1;
+                    var pageSize = filter.PageSize > 0 ? Math.Min(filter.PageSize, 100) : 10;
+                    var list = repo.GetAll() ?? new List<ProductoResponseDto>();
 
-                    if (list == null || list.Count == 0)
+                    if (!string.IsNullOrWhiteSpace(filter.Search))
                     {
-                        rst.MessageResult = "No hay datos";
-                        rst.Result = new List<ProductoResponseDto>();
-                    }
-                    else
-                    {
-                        rst.Result = list;
+                        var search = filter.Search.Trim();
+                        list = list.Where(product => MatchesSearch(product, search)).ToList();
                     }
 
+                    rst.Result = PagedList<ProductoResponseDto>.Create(list, pageNumber, pageSize);
                     rst.stateOperation = true;
                 }
                 catch (Exception err)
@@ -72,6 +74,32 @@ namespace GestionProyectosApi.Application.Services
             });
 
             return result;
+        }
+
+        private static bool MatchesSearch(ProductoResponseDto product, string search)
+        {
+            var values = new[]
+            {
+                product.Id.ToString(CultureInfo.InvariantCulture),
+                product.Nombre,
+                product.Sku,
+                product.Descripcion,
+                product.PrecioUnitario.ToString(CultureInfo.InvariantCulture),
+                product.Stock.ToString(CultureInfo.InvariantCulture),
+                product.StockMinimo.ToString(CultureInfo.InvariantCulture),
+                product.CapacidadMaxima.ToString(CultureInfo.InvariantCulture),
+                product.CategoriaId.ToString(CultureInfo.InvariantCulture),
+                product.EstadoProductoId.ToString(CultureInfo.InvariantCulture),
+                product.FechaCreacion.ToString(CultureInfo.InvariantCulture),
+                product.FechaActualizacion?.ToString(CultureInfo.InvariantCulture),
+                product.Categoria?.Nombre,
+                product.Categoria?.Descripcion,
+                product.EstadoProducto?.Nombre
+            };
+
+            return values.Any(value =>
+                !string.IsNullOrWhiteSpace(value) &&
+                value.Contains(search, StringComparison.OrdinalIgnoreCase));
         }
 
         public ResultOperation<ProductoResponseDto> GetById(int id)

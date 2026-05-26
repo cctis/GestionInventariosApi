@@ -1,4 +1,5 @@
 using GestionProyectosApi.Application.Services;
+using GestionProyectosApi.Domain.Models.Dto;
 using GestionProyectosApi.Domain.Models.Generico.SP;
 using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
 using GestionProyectosApi.Infrastructure.Repositories.Interfaces;
@@ -22,11 +23,51 @@ public class ProductoServiceTests
         };
         _repository.Setup(repo => repo.GetAll()).Returns(products);
 
-        var result = CreateService().GetAll();
+        var result = CreateService().GetAll(new ProductoFilterDto());
 
         Assert.True(result.stateOperation);
-        Assert.Same(products, result.Result);
+        Assert.Single(result.Result!);
+        Assert.Equal("Monitor", result.Result![0].Nombre);
+        Assert.Equal(1, result.Result.TotalCount);
         Assert.Null(result.MessageResult);
+    }
+
+    [Fact]
+    public void GetAll_WithSearch_FindsProductByDescriptionOrRelatedProperty()
+    {
+        var products = new List<ProductoResponseDto>
+        {
+            new() { Id = 1, Nombre = "Monitor", Descripcion = "Pantalla amplia" },
+            new() { Id = 2, Nombre = "Cable", CategoriaNombre = "Accesorios" },
+            new() { Id = 3, Nombre = "Mouse", EstadoProductoNombre = "Agotado" }
+        };
+        _repository.Setup(repo => repo.GetAll()).Returns(products);
+
+        var byDescription = CreateService().GetAll(new ProductoFilterDto { Search = "pantalla" });
+        var byCategory = CreateService().GetAll(new ProductoFilterDto { Search = "accesorios" });
+        var byStatus = CreateService().GetAll(new ProductoFilterDto { Search = "agotado" });
+
+        Assert.Equal("Monitor", Assert.Single(byDescription.Result!).Nombre);
+        Assert.Equal("Cable", Assert.Single(byCategory.Result!).Nombre);
+        Assert.Equal("Mouse", Assert.Single(byStatus.Result!).Nombre);
+    }
+
+    [Fact]
+    public void GetAll_WithPagination_ReturnsRequestedPageAndMetadata()
+    {
+        var products = Enumerable.Range(1, 5)
+            .Select(id => new ProductoResponseDto { Id = id, Nombre = $"Producto {id}" })
+            .ToList();
+        _repository.Setup(repo => repo.GetAll()).Returns(products);
+
+        var result = CreateService().GetAll(new ProductoFilterDto { PageNumber = 2, PageSize = 2 });
+
+        Assert.Equal(5, result.Result!.TotalCount);
+        Assert.Equal(3, result.Result.TotalPages);
+        Assert.Equal(2, result.Result.CurrentPage);
+        Assert.True(result.Result.HasNextPage);
+        Assert.True(result.Result.HasPreviousPage);
+        Assert.Equal(new[] { 3, 4 }, result.Result.Select(product => product.Id));
     }
 
     [Fact]
