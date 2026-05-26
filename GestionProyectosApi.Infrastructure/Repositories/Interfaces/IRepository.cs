@@ -1,0 +1,21 @@
+﻿using Dapper;
+using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
+
+namespace GestionProyectosApi.Infrastructure.Repositories.Interfaces
+{
+    public interface IRepository
+    {
+        void SetUnitOfWork(IUnitOfWork uow);
+        T Get<T>(string query);
+        T Get<T>(string query, DynamicParameters @params);
+        List<T> GetList<T>(string query);
+        List<T> GetList<T>(string query, DynamicParameters @params);
+        T GetDataOfProcedure<T>(string query, DynamicParameters @params);
+        T GetDataOfProcedure<T>(string query);
+        List<T> GetDataListOfProcedure<T>(string query, DynamicParameters @params);
+        List<T> GetDataListOfProcedure<T>(string query);
+        bool GetExists(string tabla, string where, DynamicParameters @params);
+        int Execute<T>(string query, DynamicParameters @params);
+        DateTime GetServerDate();
+    }
+}
