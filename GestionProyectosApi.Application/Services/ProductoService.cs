@@ -3,22 +3,44 @@ using GestionProyectosApi.Domain.Models;
 using GestionProyectosApi.Domain.Models.Dto;
 using GestionProyectosApi.Domain.Models.Generico.SP;
 using GestionProyectosApi.Infrastructure.Repositories;
+using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
+using GestionProyectosApi.Infrastructure.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
 
 namespace GestionProyectosApi.Application.Services
 {
     public class ProductoService : _Service, IProductoService
     {
+        private readonly IProductoRepository? _repository;
+        private readonly IUnitOfWork? _unitOfWork;
+
         public ProductoService(IOptions<ConnectionStrings> connectionStrings) : base(connectionStrings.Value.ConnetionGestionInventario)
         {
 
+        }
+
+        public ProductoService(IProductoRepository repository, IUnitOfWork unitOfWork) : base(string.Empty)
+        {
+            _repository = repository;
+            _unitOfWork = unitOfWork;
+        }
+
+        private TResult Execute<TResult>(Func<IProductoRepository, IUnitOfWork, TResult> operation)
+            where TResult : ResultOperation, new()
+        {
+            if (_repository != null && _unitOfWork != null)
+            {
+                return WrapExecuteTrans(_repository, _unitOfWork, operation);
+            }
+
+            return WrapExecuteTrans<TResult, ProductoRepository>((repo, uow) => operation(repo, uow));
         }
 
         #region READ
 
         public ResultOperation<List<ProductoResponseDto>> GetAll()
         {
-            var result = WrapExecuteTrans<ResultOperation<List<ProductoResponseDto>>, ProductoRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<List<ProductoResponseDto>>>((repo, uow) =>
             {
                 var rst = new ResultOperation<List<ProductoResponseDto>>();
 
@@ -54,7 +76,7 @@ namespace GestionProyectosApi.Application.Services
 
         public ResultOperation<ProductoResponseDto> GetById(int id)
         {
-            var result = WrapExecuteTrans<ResultOperation<ProductoResponseDto>, ProductoRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<ProductoResponseDto>>((repo, uow) =>
             {
                 var rst = new ResultOperation<ProductoResponseDto>();
 
@@ -93,7 +115,7 @@ namespace GestionProyectosApi.Application.Services
 
         public ResultOperation<bool> Create(ProductoCreateDto dto)
         {
-            var result = WrapExecuteTrans<ResultOperation<bool>, ProductoRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<bool>>((repo, uow) =>
             {
                 var rst = new ResultOperation<bool>();
 
@@ -121,7 +143,7 @@ namespace GestionProyectosApi.Application.Services
 
         public ResultOperation<bool> Update(int id, ProductoUpdateDto dto)
         {
-            var result = WrapExecuteTrans<ResultOperation<bool>, ProductoRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<bool>>((repo, uow) =>
             {
                 var rst = new ResultOperation<bool>();
 
@@ -212,7 +234,7 @@ namespace GestionProyectosApi.Application.Services
 
         public ResultOperation<bool> Delete(int id)
         {
-            var result = WrapExecuteTrans<ResultOperation<bool>, ProductoRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<bool>>((repo, uow) =>
             {
                 var rst = new ResultOperation<bool>();
 

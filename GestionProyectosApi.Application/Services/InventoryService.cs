@@ -3,20 +3,42 @@ using GestionProyectosApi.Domain.Models;
 using GestionProyectosApi.Domain.Models.Dto;
 using GestionProyectosApi.Domain.Models.Generico.SP;
 using GestionProyectosApi.Infrastructure.Repositories;
+using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
+using GestionProyectosApi.Infrastructure.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
 
 namespace GestionProyectosApi.Application.Services
 {
     public class InventoryService : _Service, IInventoryService
     {
+        private readonly IInventoryRepository? _repository;
+        private readonly IUnitOfWork? _unitOfWork;
+
         public InventoryService(IOptions<ConnectionStrings> connectionStrings) : base(connectionStrings.Value.ConnetionGestionInventario)
         {
 
         }
 
+        public InventoryService(IInventoryRepository repository, IUnitOfWork unitOfWork) : base(string.Empty)
+        {
+            _repository = repository;
+            _unitOfWork = unitOfWork;
+        }
+
+        private TResult Execute<TResult>(Func<IInventoryRepository, IUnitOfWork, TResult> operation)
+            where TResult : ResultOperation, new()
+        {
+            if (_repository != null && _unitOfWork != null)
+            {
+                return WrapExecuteTrans(_repository, _unitOfWork, operation);
+            }
+
+            return WrapExecuteTrans<TResult, InventoryRepository>((repo, uow) => operation(repo, uow));
+        }
+
         public ResultOperation<InventorySummaryDto> GetSummary()
         {
-            var result = WrapExecuteTrans<ResultOperation<InventorySummaryDto>, InventoryRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<InventorySummaryDto>>((repo, uow) =>
             {
                 var rst = new ResultOperation<InventorySummaryDto>();
 

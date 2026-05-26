@@ -95,5 +95,39 @@ namespace GestionProyectosApi.Application.Services
             }
             return result;
         }
+
+        protected TResult WrapExecuteTrans<TResult, TRepository>(
+            TRepository repository,
+            IUnitOfWork unitOfWork,
+            Func<TRepository, IUnitOfWork, TResult> exWp)
+        where TResult : ResultOperation, new()
+        {
+            TResult result = new TResult();
+
+            try
+            {
+                result = exWp(repository, unitOfWork);
+                if (result.RollBack) { throw new Exception(); }
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Rollback();
+                result.stateOperation = false;
+
+                StringBuilder exceptionDetails = new StringBuilder();
+                exceptionDetails.AppendLine($"Message: {ex.Message}");
+                exceptionDetails.AppendLine($"StackTrace: {ex.StackTrace}");
+
+                if (ex.InnerException != null)
+                {
+                    exceptionDetails.AppendLine($"InnerException Message: {ex.InnerException.Message}");
+                    exceptionDetails.AppendLine($"InnerException StackTrace: {ex.InnerException.StackTrace}");
+                }
+
+                result.MessageExceptionTechnical = exceptionDetails.ToString();
+            }
+
+            return result;
+        }
     }
 }

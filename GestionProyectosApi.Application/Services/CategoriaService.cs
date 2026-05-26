@@ -3,22 +3,44 @@ using GestionProyectosApi.Domain.Models;
 using GestionProyectosApi.Domain.Models.Dto;
 using GestionProyectosApi.Domain.Models.Generico.SP;
 using GestionProyectosApi.Infrastructure.Repositories;
+using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
+using GestionProyectosApi.Infrastructure.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
 
 namespace GestionProyectosApi.Application.Services
 {
     public class CategoriaService : _Service, ICategoriaService
     {
+        private readonly ICategoriaRepository? _repository;
+        private readonly IUnitOfWork? _unitOfWork;
+
         public CategoriaService(IOptions<ConnectionStrings> connectionStrings) : base(connectionStrings.Value.ConnetionGestionInventario)
         {
 
+        }
+
+        public CategoriaService(ICategoriaRepository repository, IUnitOfWork unitOfWork) : base(string.Empty)
+        {
+            _repository = repository;
+            _unitOfWork = unitOfWork;
+        }
+
+        private TResult Execute<TResult>(Func<ICategoriaRepository, IUnitOfWork, TResult> operation)
+            where TResult : ResultOperation, new()
+        {
+            if (_repository != null && _unitOfWork != null)
+            {
+                return WrapExecuteTrans(_repository, _unitOfWork, operation);
+            }
+
+            return WrapExecuteTrans<TResult, CategoriaRepository>((repo, uow) => operation(repo, uow));
         }
 
         #region READ
 
         public ResultOperation<List<CategoriaResponseDto>> GetAll()
         {
-            var result = WrapExecuteTrans<ResultOperation<List<CategoriaResponseDto>>, CategoriaRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<List<CategoriaResponseDto>>>((repo, uow) =>
             {
                 var rst = new ResultOperation<List<CategoriaResponseDto>>();
 
@@ -54,7 +76,7 @@ namespace GestionProyectosApi.Application.Services
 
         public ResultOperation<CategoriaResponseDto> GetById(int id)
         {
-            var result = WrapExecuteTrans<ResultOperation<CategoriaResponseDto>, CategoriaRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<CategoriaResponseDto>>((repo, uow) =>
             {
                 var rst = new ResultOperation<CategoriaResponseDto>();
 
@@ -93,7 +115,7 @@ namespace GestionProyectosApi.Application.Services
 
         public ResultOperation<bool> Create(CategoriaCreateDto dto)
         {
-            var result = WrapExecuteTrans<ResultOperation<bool>, CategoriaRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<bool>>((repo, uow) =>
             {
                 var rst = new ResultOperation<bool>();
 
@@ -121,7 +143,7 @@ namespace GestionProyectosApi.Application.Services
 
         public ResultOperation<bool> Update(int id, CategoriaUpdateDto dto)
         {
-            var result = WrapExecuteTrans<ResultOperation<bool>, CategoriaRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<bool>>((repo, uow) =>
             {
                 var rst = new ResultOperation<bool>();
 
@@ -181,7 +203,7 @@ namespace GestionProyectosApi.Application.Services
 
         public ResultOperation<bool> Delete(int id)
         {
-            var result = WrapExecuteTrans<ResultOperation<bool>, CategoriaRepository>((repo, uow) =>
+            var result = Execute<ResultOperation<bool>>((repo, uow) =>
             {
                 var rst = new ResultOperation<bool>();
 

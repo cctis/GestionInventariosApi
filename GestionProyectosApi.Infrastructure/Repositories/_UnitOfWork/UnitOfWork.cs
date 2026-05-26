@@ -45,13 +45,13 @@ namespace GestionProyectosApi.Infrastructure.Repositories._UnitOfWork
 
         public void Commit()
         {
-            _transaction.Commit();
+            _transaction?.Commit();
             //Dispose();
         }
 
         public void Rollback()
         {
-            _transaction.Rollback();
+            _transaction?.Rollback();
             //Dispose();
         }
 
