@@ -1,8 +1,8 @@
 ﻿using Dapper;
-using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
-using GestionProyectosApi.Infrastructure.Repositories.Interfaces;
+using GestionInventariosApi.Infrastructure.Repositories._UnitOfWork;
+using GestionInventariosApi.Infrastructure.Repositories.Interfaces;
 
-namespace GestionProyectosApi.Infrastructure.Repositories
+namespace GestionInventariosApi.Infrastructure.Repositories
 {
     public class Repository : IRepository
     {

@@ -135,7 +135,7 @@ dotnet build .\GestionProyectosApi.sln --configuration Debug
 Ejecutar la Web API:
 
 ```powershell
-dotnet run --project .\GestionProyectosApi.WebAPI\GestionProyectosApi.WebAPI.csproj
+dotnet run --project .\GestionProyectosApi.WebAPI\GestionInventariosApi.WebAPI.csproj
 ```
 
 En el perfil HTTPS de desarrollo, Swagger se encuentra normalmente en:
@@ -162,13 +162,13 @@ Cobertura implementada:
 Ejecutar pruebas:
 
 ```powershell
-dotnet test .\GestionProyectosApi.Tests\GestionProyectosApi.Tests.csproj --configuration Debug
+dotnet test .\GestionProyectosApi.Tests\GestionInventariosApi.Tests.csproj --configuration Debug
 ```
 
 Resultado verificado:
 
 ```text
-Total: 26, Superado: 26, Con error: 0, Omitido: 0
+Total: 28, Superado: 28, Con error: 0, Omitido: 0
 ```
 
 ## Diseño Para Testabilidad
@@ -188,10 +188,4 @@ El constructor usado en producción, basado en `IOptions<ConnectionStrings>`, se
 - La compilación actual presenta advertencias `NU1701` por paquetes heredados restaurados para plataformas .NET Framework mientras los proyectos apuntan a `net8.0`.
 - También existen advertencias de nulabilidad y de APIs criptográficas obsoletas en código previo. No bloquean la compilación ni las pruebas unitarias, pero conviene tratarlas como deuda técnica.
 
-## Recomendaciones Para Evolución
 
-- Migrar dependencias heredadas incompatibles o parcialmente compatibles con .NET 8.
-- Revisar y corregir las advertencias de nulabilidad en controladores, configuración y repositorios.
-- Modernizar las APIs criptográficas marcadas como obsoletas.
-- Incorporar pruebas de integración para procedimientos almacenados y conexión a SQL Server.
-- Gestionar secretos de autenticación y conexiones fuera del repositorio para entornos de despliegue.

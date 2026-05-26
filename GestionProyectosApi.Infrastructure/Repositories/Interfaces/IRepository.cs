@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
+using GestionInventariosApi.Infrastructure.Repositories._UnitOfWork;
 
-namespace GestionProyectosApi.Infrastructure.Repositories.Interfaces
+namespace GestionInventariosApi.Infrastructure.Repositories.Interfaces
 {
     public interface IRepository
     {

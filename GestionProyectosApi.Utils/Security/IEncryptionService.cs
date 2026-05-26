@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GestionProyectosApi.Utils.Security
+namespace GestionInventariosApi.Utils.Security
 {
     public interface IEncryptionService
     {

@@ -1,15 +1,15 @@
-﻿using GestionProyectosApi.Application.Services.Interfaces;
-using GestionProyectosApi.Domain.Entities.CustomEntities;
-using GestionProyectosApi.Domain.Models;
-using GestionProyectosApi.Domain.Models.Dto;
-using GestionProyectosApi.Domain.Models.Generico.SP;
-using GestionProyectosApi.Infrastructure.Repositories;
-using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
-using GestionProyectosApi.Infrastructure.Repositories.Interfaces;
+﻿using GestionInventariosApi.Application.Services.Interfaces;
+using GestionInventariosApi.Domain.Entities.CustomEntities;
+using GestionInventariosApi.Domain.Models;
+using GestionInventariosApi.Domain.Models.Dto;
+using GestionInventariosApi.Domain.Models.Generico.SP;
+using GestionInventariosApi.Infrastructure.Repositories;
+using GestionInventariosApi.Infrastructure.Repositories._UnitOfWork;
+using GestionInventariosApi.Infrastructure.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
 using System.Globalization;
 
-namespace GestionProyectosApi.Application.Services
+namespace GestionInventariosApi.Application.Services
 {
     public class ProductoService : _Service, IProductoService
     {

@@ -1,7 +1,7 @@
-using GestionProyectosApi.Domain.Models.Generico.SP;
-using GestionProyectosApi.Infrastructure.Repositories;
+using GestionInventariosApi.Domain.Models.Generico.SP;
+using GestionInventariosApi.Infrastructure.Repositories;
 
-namespace GestionProyectosApi.Tests.Repositories;
+namespace GestionInventariosApi.Tests.Repositories;
 
 public class RepositoryValidationTests
 {

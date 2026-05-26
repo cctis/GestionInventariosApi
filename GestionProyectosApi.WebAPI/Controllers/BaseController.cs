@@ -1,6 +1,6 @@
-﻿using GestionProyectosApi.Application.Services.Interfaces;
-using GestionProyectosApi.Domain.Models;
-using GestionProyectosApi.Utils.Security;
+﻿using GestionInventariosApi.Application.Services.Interfaces;
+using GestionInventariosApi.Domain.Models;
+using GestionInventariosApi.Utils.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace GestionProyectosApi.WebAPI.Controllers
+namespace GestionInventariosApi.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

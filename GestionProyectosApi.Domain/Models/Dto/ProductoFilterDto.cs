@@ -1,4 +1,4 @@
-namespace GestionProyectosApi.Domain.Models.Dto
+namespace GestionInventariosApi.Domain.Models.Dto
 {
     public class ProductoFilterDto
     {

@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Text;
-using GestionProyectosApi.Utils.Security;
+using GestionInventariosApi.Utils.Security;
 
-namespace GestionProyectosApi.Infrastructure.Context
+namespace GestionInventariosApi.Infrastructure.Context
 {
     public class ConnectionFactory
     {

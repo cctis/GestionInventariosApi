@@ -1,6 +1,6 @@
-﻿using GestionProyectosApi.Domain.Models.Dto;
+﻿using GestionInventariosApi.Domain.Models.Dto;
 
-namespace GestionProyectosApi.Application.Services.Interfaces
+namespace GestionInventariosApi.Application.Services.Interfaces
 {
     public interface ITokenService
     {

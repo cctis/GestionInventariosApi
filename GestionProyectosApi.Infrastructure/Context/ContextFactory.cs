@@ -1,10 +1,10 @@
-﻿using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
+﻿using GestionInventariosApi.Infrastructure.Repositories._UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace GestionProyectosApi.Infrastructure.Context
+namespace GestionInventariosApi.Infrastructure.Context
 {
     public sealed class ContextFactory : IDisposable
     {

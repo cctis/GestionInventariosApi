@@ -1,5 +1,5 @@
-﻿using GestionProyectosApi.Domain.Models;
-using GestionProyectosApi.Domain.Models.Dto;
+﻿using GestionInventariosApi.Domain.Models;
+using GestionInventariosApi.Domain.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace GestionProyectosApi.WebAPI.Controllers
+namespace GestionInventariosApi.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,10 +1,10 @@
-using GestionProyectosApi.Application.Services;
-using GestionProyectosApi.Domain.Models.Generico.SP;
-using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
-using GestionProyectosApi.Infrastructure.Repositories.Interfaces;
+using GestionInventariosApi.Application.Services;
+using GestionInventariosApi.Domain.Models.Generico.SP;
+using GestionInventariosApi.Infrastructure.Repositories._UnitOfWork;
+using GestionInventariosApi.Infrastructure.Repositories.Interfaces;
 using Moq;
 
-namespace GestionProyectosApi.Tests.Services;
+namespace GestionInventariosApi.Tests.Services;
 
 public class InventoryServiceTests
 {

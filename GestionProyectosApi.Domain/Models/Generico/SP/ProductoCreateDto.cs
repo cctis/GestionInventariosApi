@@ -1,4 +1,4 @@
-﻿namespace GestionProyectosApi.Domain.Models.Generico.SP
+﻿namespace GestionInventariosApi.Domain.Models.Generico.SP
 {
     public class ProductoCreateDto
     {

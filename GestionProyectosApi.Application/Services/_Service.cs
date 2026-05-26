@@ -1,10 +1,10 @@
-﻿using GestionProyectosApi.Domain.Models.Dto;
-using GestionProyectosApi.Infrastructure.Context;
-using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
-using GestionProyectosApi.Infrastructure.Repositories.Interfaces;
+﻿using GestionInventariosApi.Domain.Models.Dto;
+using GestionInventariosApi.Infrastructure.Context;
+using GestionInventariosApi.Infrastructure.Repositories._UnitOfWork;
+using GestionInventariosApi.Infrastructure.Repositories.Interfaces;
 using System.Text;
 
-namespace GestionProyectosApi.Application.Services
+namespace GestionInventariosApi.Application.Services
 {
     public class _Service
     {

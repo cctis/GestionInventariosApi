@@ -1,4 +1,4 @@
-﻿namespace GestionProyectosApi.Domain.Models
+﻿namespace GestionInventariosApi.Domain.Models
 {
     public class ConnectionStrings
     {

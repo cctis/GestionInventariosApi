@@ -1,7 +1,7 @@
-using GestionProyectosApi.Application.Services;
-using GestionProyectosApi.Domain.Models;
-using GestionProyectosApi.Infrastructure.Context;
-using GestionProyectosApi.Utils.Security;
+using GestionInventariosApi.Application.Services;
+using GestionInventariosApi.Domain.Models;
+using GestionInventariosApi.Infrastructure.Context;
+using GestionInventariosApi.Utils.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

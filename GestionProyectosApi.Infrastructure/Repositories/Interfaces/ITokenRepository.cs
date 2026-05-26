@@ -1,6 +1,6 @@
-﻿using GestionProyectosApi.Domain.Models.Dto;
+﻿using GestionInventariosApi.Domain.Models.Dto;
 
-namespace GestionProyectosApi.Infrastructure.Repositories.Interfaces
+namespace GestionInventariosApi.Infrastructure.Repositories.Interfaces
 {
     public interface ITokenRepository
     {

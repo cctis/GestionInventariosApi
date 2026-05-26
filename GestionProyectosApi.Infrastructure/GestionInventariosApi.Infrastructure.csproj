@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GestionProyectosApi.Domain\GestionProyectosApi.Domain.csproj" />
-    <ProjectReference Include="..\GestionProyectosApi.Utils\GestionProyectosApi.Utils.csproj" />
+    <ProjectReference Include="..\GestionProyectosApi.Domain\GestionInventariosApi.Domain.csproj" />
+    <ProjectReference Include="..\GestionProyectosApi.Utils\GestionInventariosApi.Utils.csproj" />
   </ItemGroup>
 
 </Project>

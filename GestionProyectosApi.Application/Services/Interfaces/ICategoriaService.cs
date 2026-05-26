@@ -1,7 +1,7 @@
-﻿using GestionProyectosApi.Domain.Models.Dto;
-using GestionProyectosApi.Domain.Models.Generico.SP;
+﻿using GestionInventariosApi.Domain.Models.Dto;
+using GestionInventariosApi.Domain.Models.Generico.SP;
 
-namespace GestionProyectosApi.Application.Services.Interfaces
+namespace GestionInventariosApi.Application.Services.Interfaces
 {
     public interface ICategoriaService
     {

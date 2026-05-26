@@ -1,6 +1,6 @@
-﻿using GestionProyectosApi.Domain.Models.Generico.SP;
+﻿using GestionInventariosApi.Domain.Models.Generico.SP;
 
-namespace GestionProyectosApi.Infrastructure.Repositories.Interfaces
+namespace GestionInventariosApi.Infrastructure.Repositories.Interfaces
 {
     public interface IEstadoProductoRepository
     {

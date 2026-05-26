@@ -4,7 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace GestionProyectosApi.Utils.Security
+namespace GestionInventariosApi.Utils.Security
 {
     public class EncryptionService : IEncryptionService
     {

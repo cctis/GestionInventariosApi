@@ -1,7 +1,7 @@
-﻿using GestionProyectosApi.Application.Services.Interfaces;
-using GestionProyectosApi.Domain.Models;
-using GestionProyectosApi.Domain.Models.Dto;
-using GestionProyectosApi.Infrastructure.Repositories;
+﻿using GestionInventariosApi.Application.Services.Interfaces;
+using GestionInventariosApi.Domain.Models;
+using GestionInventariosApi.Domain.Models.Dto;
+using GestionInventariosApi.Infrastructure.Repositories;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GestionProyectosApi.Application.Services
+namespace GestionInventariosApi.Application.Services
 {
     public class TokenService : _Service, ITokenService
     {

@@ -1,8 +1,8 @@
 using System.Data;
-using GestionProyectosApi.Infrastructure.Repositories._UnitOfWork;
+using GestionInventariosApi.Infrastructure.Repositories._UnitOfWork;
 using Moq;
 
-namespace GestionProyectosApi.Tests.Repositories;
+namespace GestionInventariosApi.Tests.Repositories;
 
 public class UnitOfWorkTests
 {

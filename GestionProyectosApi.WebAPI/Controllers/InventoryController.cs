@@ -1,12 +1,12 @@
-﻿using GestionProyectosApi.Domain.Models;
-using GestionProyectosApi.Domain.Models.Dto;
-using GestionProyectosApi.Domain.Models.Generico.SP;
+﻿using GestionInventariosApi.Domain.Models;
+using GestionInventariosApi.Domain.Models.Dto;
+using GestionInventariosApi.Domain.Models.Generico.SP;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace GestionProyectosApi.WebAPI.Controllers
+namespace GestionInventariosApi.WebAPI.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

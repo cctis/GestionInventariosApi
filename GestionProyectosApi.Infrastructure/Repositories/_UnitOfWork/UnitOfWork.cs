@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace GestionProyectosApi.Infrastructure.Repositories._UnitOfWork
+namespace GestionInventariosApi.Infrastructure.Repositories._UnitOfWork
 {
     public sealed class UnitOfWork : IUnitOfWork
     {

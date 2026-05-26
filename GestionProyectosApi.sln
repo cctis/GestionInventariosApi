@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionProyectosApi.Application", "GestionProyectosApi.Application\GestionProyectosApi.Application.csproj", "{BFD4B5E5-84E7-45EA-AC31-88EC8CDA913D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionInventariosApi.Application", "GestionProyectosApi.Application\GestionInventariosApi.Application.csproj", "{BFD4B5E5-84E7-45EA-AC31-88EC8CDA913D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionProyectosApi.Domain", "GestionProyectosApi.Domain\GestionProyectosApi.Domain.csproj", "{71A8ADFA-84CC-4C1C-B720-E18117A4CA25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionInventariosApi.Domain", "GestionProyectosApi.Domain\GestionInventariosApi.Domain.csproj", "{71A8ADFA-84CC-4C1C-B720-E18117A4CA25}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionProyectosApi.Infrastructure", "GestionProyectosApi.Infrastructure\GestionProyectosApi.Infrastructure.csproj", "{AC382996-9197-4A20-BF09-D9753A37F947}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionInventariosApi.Infrastructure", "GestionProyectosApi.Infrastructure\GestionInventariosApi.Infrastructure.csproj", "{AC382996-9197-4A20-BF09-D9753A37F947}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionProyectosApi.Utils", "GestionProyectosApi.Utils\GestionProyectosApi.Utils.csproj", "{782483E7-20B1-4CD9-B5CD-833863F7CF16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionInventariosApi.Utils", "GestionProyectosApi.Utils\GestionInventariosApi.Utils.csproj", "{782483E7-20B1-4CD9-B5CD-833863F7CF16}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionProyectosApi.WebAPI", "GestionProyectosApi.WebAPI\GestionProyectosApi.WebAPI.csproj", "{DD5826E6-B21B-4D8C-9075-09FC450FC725}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionInventariosApi.WebAPI", "GestionProyectosApi.WebAPI\GestionInventariosApi.WebAPI.csproj", "{DD5826E6-B21B-4D8C-9075-09FC450FC725}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionProyectosApi.Tests", "GestionProyectosApi.Tests\GestionProyectosApi.Tests.csproj", "{9878CA0B-B4A8-44F3-8379-19E77AC37D9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionInventariosApi.Tests", "GestionProyectosApi.Tests\GestionInventariosApi.Tests.csproj", "{9878CA0B-B4A8-44F3-8379-19E77AC37D9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

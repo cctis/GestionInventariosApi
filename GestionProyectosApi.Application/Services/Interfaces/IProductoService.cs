@@ -1,8 +1,8 @@
-﻿using GestionProyectosApi.Domain.Models.Dto;
-using GestionProyectosApi.Domain.Models.Generico.SP;
-using GestionProyectosApi.Domain.Entities.CustomEntities;
+﻿using GestionInventariosApi.Domain.Models.Dto;
+using GestionInventariosApi.Domain.Models.Generico.SP;
+using GestionInventariosApi.Domain.Entities.CustomEntities;
 
-namespace GestionProyectosApi.Application.Services.Interfaces
+namespace GestionInventariosApi.Application.Services.Interfaces
 {
     public interface IProductoService
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace GestionProyectosApi.Infrastructure.Context
+namespace GestionInventariosApi.Infrastructure.Context
 {
     public class ContextSql : DbContext
     {

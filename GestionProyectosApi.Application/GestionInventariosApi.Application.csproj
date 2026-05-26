@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GestionProyectosApi.Domain\GestionProyectosApi.Domain.csproj" />
-    <ProjectReference Include="..\GestionProyectosApi.Infrastructure\GestionProyectosApi.Infrastructure.csproj" />
-    <ProjectReference Include="..\GestionProyectosApi.Utils\GestionProyectosApi.Utils.csproj" />
+    <ProjectReference Include="..\GestionProyectosApi.Domain\GestionInventariosApi.Domain.csproj" />
+    <ProjectReference Include="..\GestionProyectosApi.Infrastructure\GestionInventariosApi.Infrastructure.csproj" />
+    <ProjectReference Include="..\GestionProyectosApi.Utils\GestionInventariosApi.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>

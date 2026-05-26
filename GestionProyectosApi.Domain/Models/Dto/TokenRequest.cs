@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GestionProyectosApi.Domain.Models.Dto
+namespace GestionInventariosApi.Domain.Models.Dto
 {
     public class TokenRequest
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace GestionProyectosApi.Infrastructure.Repositories._UnitOfWork
+namespace GestionInventariosApi.Infrastructure.Repositories._UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
